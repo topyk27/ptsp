@@ -8,8 +8,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/style.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/cpr.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/loader.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/cursor.css') ?>">
 </head>
-<body>
+<body id="wrap">
     <div class="logo-pa"></div>
     <div class="container">
         <!-- <h1 class="setelan">SILAHKAN AMBIL NOMOR ANTRIAN</h1> -->
@@ -113,10 +114,16 @@
             </div>
         </div>
     </div>
+    <!-- cursor -->
+    <!-- <div id="wrap">
+  <p>move the cursor around the screen</p>
+    </div> -->
+    <!-- end cursor -->
     <script src="<?php echo base_url('asset/js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?php echo base_url('asset/js/bootstrap.min.js') ?>"></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=6UoEN13s"></script>
     <script src="<?php echo base_url('asset/DataTables/datatables.min.js') ?>"></script>
     <script src="<?php echo base_url('asset/js/antrian.js') ?>"></script>
+    <script src="<?php echo base_url('asset/js/cursor.js') ?>"></script>
 </body>
 </html>

@@ -23,8 +23,8 @@ date_default_timezone_set('Asia/Makassar');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'http://localhost/ptsp';
-$config['base_url'] = 'http://192.168.2.41/ptsp';
+$config['base_url'] = 'http://localhost/ptsp';
+// $config['base_url'] = 'http://192.168.2.41/ptsp';
 
 /*
 |--------------------------------------------------------------------------
