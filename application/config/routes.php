@@ -54,5 +54,6 @@ $route['default_controller'] = 'C_antrian';
 // $route['c_user/ubah'] = 'c_user/ubah';
 $route['peler'] = 'c_login';
 $route['login'] = 'c_login';
+$route['tutup'] = 'C_antrian/tutup';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

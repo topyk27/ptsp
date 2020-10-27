@@ -51,6 +51,22 @@ class M_antrian extends CI_Model
 		{
 			$respon['success'] = 1;
 			$respon['no'] = $no;
+
+			// dapatkan id ruang layanannya
+			$statement2 = "SELECT id FROM ruang WHERE layanan = '".$kode."'";
+			$query2 = $this->db->query2($statement2);
+			$result_query2 = $query2->row();
+			$ruang_id = $result_query2->id;
+
+			// masukkan jumlah pasien yang terlayani
+			$statement3 = "SELECT terlayani FROM batas_layanan WHERE ruang_id = ".$ruang_id." && tanggal = '".$tgl."'";
+			$query3 = $this->db->query($statement3);
+			$result_query3 = $query3->row();
+			$terlayani = $result_query3->terlayani;
+			if($terlayani < 7)
+			{
+				
+			}
 		}
 		echo json_encode($respon);
 	}

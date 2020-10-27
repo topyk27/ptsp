@@ -23,6 +23,11 @@ class C_antrian extends CI_Controller
 
 	}
 
+	public function tutup()
+	{
+		$this->load->view("V_tutup");
+	}
+
 	public function antrian($kode) //dapatkan list antrian
 	{
 		$data = $this->M_antrian->getAntrian($kode);

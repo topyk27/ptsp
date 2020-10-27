@@ -125,5 +125,24 @@
     <script src="<?php echo base_url('asset/DataTables/datatables.min.js') ?>"></script>
     <script src="<?php echo base_url('asset/js/antrian.js') ?>"></script>
     <script src="<?php echo base_url('asset/js/cursor.js') ?>"></script>
+    <script type="text/javascript">
+        function cek_tutup() {
+            var sekarang = new Date();
+            var jam_tutup = new Date();
+            jam_tutup.setHours(14,30,0);
+            if(jam_tutup.getHours >= sekarang.getHours)
+            {
+                if(!responsiveVoice.isPlaying())
+                {
+                    window.location.replace("<?php echo base_url('tutup'); ?>");
+                }
+                else
+                {
+                    console.log("gak jadi tutup");
+                }
+            }
+        }
+        setInterval(cek_tutup, 60000);
+    </script>
 </body>
 </html>
