@@ -38,6 +38,11 @@ class C_user extends CI_Controller
 		
 	}
 
+	public function pengumuman()
+	{
+		$this->load->view('pengumuman');
+	}
+
 	
 }
 

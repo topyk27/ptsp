@@ -129,8 +129,23 @@
         function cek_tutup() {
             var sekarang = new Date();
             var jam_tutup = new Date();
-            jam_tutup.setHours(14,30,0);
-            if(jam_tutup.getHours >= sekarang.getHours)
+            jam_tutup.setHours(15,0,0);
+            console.log("cek tutup");
+            if(jam_tutup.getHours() == sekarang.getHours())
+            {
+                if(jam_tutup.getMinutes() < sekarang.getMinutes())
+                {
+                    if(!responsiveVoice.isPlaying())
+                    {
+                        window.location.replace("<?php echo base_url('tutup'); ?>");
+                    }
+                    else
+                    {
+                        console.log("gak jadi tutup");
+                    }
+                }
+            }
+            else if(jam_tutup.getHours() < sekarang.getHours())
             {
                 if(!responsiveVoice.isPlaying())
                 {
@@ -140,6 +155,9 @@
                 {
                     console.log("gak jadi tutup");
                 }
+            }
+            else {
+                console.log("belum waktunya tutup");
             }
         }
         setInterval(cek_tutup, 60000);

@@ -4,6 +4,7 @@
 	<div class="navbar navbar-inverse logo-pa">
 	    <div class="kanan">
 	    	<div class="dropdown">
+	    		<a href="<?php echo site_url('c_user/pengumuman') ?>" class="btn btn-warning"><i class="fas fa-bullhorn prefix grey-text"></i> Pengumuman</a>
 	    		<a class="btn btn-primary" data-toggle="modal" data-target="#ubah-data"><?php echo $this->session->userdata('nama'); ?></a>
 	    		<a href="<?php echo site_url('c_login/logout') ?>" class="btn btn-danger"><i class="fas fa-sign-out-alt prefix grey-text"></i> keluar</a>
 	    	</div>

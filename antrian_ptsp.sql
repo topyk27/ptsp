@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2020 at 09:29 AM
+-- Generation Time: Dec 27, 2020 at 03:17 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.40
 
@@ -33,7 +33,7 @@ CREATE TABLE `antrian` (
   `kode` varchar(64) NOT NULL COMMENT 'kode jenis layanan',
   `no` int(11) NOT NULL COMMENT 'no antrian, nanti display nya digabung dengan kode jenis layanan',
   `ke` varchar(128) NOT NULL COMMENT 'langkah selanjutnya ke jenis layanan apa ya',
-  `status` varchar(16) NOT NULL COMMENT 'statusnya menunggu suspend atau kelar',
+  `status` varchar(64) NOT NULL COMMENT 'statusnya menunggu suspend atau kelar',
   `tanggal` date NOT NULL COMMENT 'tanggal ngambil antrian',
   `diperbarui` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'waktu tahapan terakhir, biar enak nanti pengurutannya'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -154,7 +154,14 @@ INSERT INTO `antrian` (`id`, `kode`, `no`, `ke`, `status`, `tanggal`, `diperbaru
 (110, 'pengaduan', 22, 'pengaduan', 'menunggu', '2020-07-26', '2020-07-26 03:16:57'),
 (111, 'pengambilan', 23, 'pengambilan', 'menunggu', '2020-07-26', '2020-07-26 07:23:05'),
 (112, 'pengambilan', 24, 'pengambilan', 'menunggu', '2020-07-26', '2020-07-26 07:23:49'),
-(113, 'ecourt', 25, 'ecourt', 'menunggu', '2020-07-26', '2020-07-26 07:24:26');
+(113, 'ecourt', 25, 'ecourt', 'menunggu', '2020-07-26', '2020-07-26 07:24:26'),
+(114, 'pengaduan', 1, 'pengaduan', 'menunggu', '2020-07-28', '2020-07-28 13:11:05'),
+(115, 'pengambilan', 1, 'Dipanggil Tidak Masuk', 'menunggu', '2020-07-31', '2020-07-31 13:54:31'),
+(116, 'pengaduan', 1, 'pengaduan', 'menunggu', '2020-09-11', '2020-09-11 01:27:30'),
+(117, 'pengambilan', 1, 'pengambilan', 'menunggu', '2020-09-14', '2020-09-14 13:45:49'),
+(118, 'pengambilan', 1, 'pengambilan', 'menunggu', '2020-09-25', '2020-09-25 07:17:34'),
+(119, 'pengambilan', 1, 'kasir', 'menunggu', '2020-12-17', '2020-12-17 13:11:01'),
+(120, 'pengambilan', 1, 'pengambilan', 'menunggu', '2020-12-24', '2020-12-24 02:25:50');
 
 -- --------------------------------------------------------
 
@@ -166,6 +173,7 @@ CREATE TABLE `panggil` (
   `id` varchar(64) NOT NULL,
   `no` int(3) NOT NULL,
   `layanan` varchar(32) NOT NULL,
+  `pengumuman` text,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -186,10 +194,10 @@ CREATE TABLE `ruang` (
 --
 
 INSERT INTO `ruang` (`id`, `kode`, `layanan`) VALUES
-(1, 'A', 'Pengaduan'),
+(1, 'A', 'pengaduan'),
 (2, 'B', 'Pendaftaran'),
-(3, 'C', 'Pengambilan Produk'),
-(4, 'D', 'Pendaftaran E-Court'),
+(3, 'C', 'pengambilan'),
+(4, 'D', 'ecourt'),
 (5, 'E', 'Kasir'),
 (6, 'F', 'POSBAKUM'),
 (7, 'G', 'POS'),
@@ -260,7 +268,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `antrian`
 --
 ALTER TABLE `antrian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `ruang`

@@ -160,6 +160,10 @@ function panggil(no,layanan)
 				alert("gagal memanggil, silahkan coba lagi");
 			}
 		},
+		error: function(err)
+		{
+			console.log(err);
+		},
 		complete: function(){
 			// $('loading').hide();
 			// $("#alert").html("<h4>No antrian "+no+" berhasil dipanggil</h4>");
@@ -258,6 +262,7 @@ $(document).ready(function(){
 				else
 				{
 					//fungsi panggil
+					console.log("mau panggil");
 					panggil(data['no'], data['ke']);
 				}
 				

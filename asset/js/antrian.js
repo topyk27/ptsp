@@ -194,7 +194,8 @@ function panggil ()
 			if (respon.success==1)
 			{
 				console.log("antrian ada");
-				memanggil_antrian(respon.id, respon.no, respon.layanan);
+				memanggil_antrian(respon.id, respon.no, respon.layanan, respon.pengumuman);
+				console.log("aaa "+respon.id);
 			}
 			else
 			{
@@ -206,10 +207,17 @@ function panggil ()
 cprtext += "i";
 cprtext += "r";
 cprtext += " & ";
-function memanggil_antrian(id,no,layanan)
+function memanggil_antrian(id,no,layanan,pengumuman)
 {
 	clearInterval(timer_panggil);
-	text = "Dipanggil nomor antrian " + no + ". silahkan ke layanan " + layanan;
+	if(pengumuman!=null)
+	{
+		text = pengumuman;
+	}
+	else
+	{
+		text = "Dipanggil nomor antrian " + no + ". silahkan ke layanan " + layanan;
+	}
 	responsiveVoice.speak(text, voice, {rate: 0.9, onend: function(){
 		setTimeout(function(){
 			responsiveVoice.speak(text, voice, {rate: 0.9, onend: hapus_panggil_antrian(id)});

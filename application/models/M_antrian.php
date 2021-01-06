@@ -52,21 +52,21 @@ class M_antrian extends CI_Model
 			$respon['success'] = 1;
 			$respon['no'] = $no;
 
-			// dapatkan id ruang layanannya
-			$statement2 = "SELECT id FROM ruang WHERE layanan = '".$kode."'";
-			$query2 = $this->db->query2($statement2);
-			$result_query2 = $query2->row();
-			$ruang_id = $result_query2->id;
+			// // dapatkan id ruang layanannya
+			// $statement2 = "SELECT id FROM ruang WHERE layanan = '".$kode."'";
+			// $query2 = $this->db->query2($statement2);
+			// $result_query2 = $query2->row();
+			// $ruang_id = $result_query2->id;
 
-			// masukkan jumlah pasien yang terlayani
-			$statement3 = "SELECT terlayani FROM batas_layanan WHERE ruang_id = ".$ruang_id." && tanggal = '".$tgl."'";
-			$query3 = $this->db->query($statement3);
-			$result_query3 = $query3->row();
-			$terlayani = $result_query3->terlayani;
-			if($terlayani < 7)
-			{
+			// // masukkan jumlah pasien yang terlayani
+			// $statement3 = "SELECT terlayani FROM batas_layanan WHERE ruang_id = ".$ruang_id." && tanggal = '".$tgl."'";
+			// $query3 = $this->db->query($statement3);
+			// $result_query3 = $query3->row();
+			// $terlayani = $result_query3->terlayani;
+			// if($terlayani < 7)
+			// {
 				
-			}
+			// }
 		}
 		echo json_encode($respon);
 	}
@@ -104,6 +104,11 @@ class M_antrian extends CI_Model
 
 	public function insertPanggilan($no, $layanan)
 	{
+		// $pengumuman = $post['pengumuman'];
+		if($this->input->post('pengumuman'))
+		{
+			$pengumuman = $this->input->post('pengumuman');
+		}
 		$this->db->where('id', $no.$layanan);
 		$q = $this->db->get("panggil");
 		if(empty($q->result()))
@@ -126,6 +131,14 @@ class M_antrian extends CI_Model
 				'no' => $no,
 				'layanan' => $layanan,
 			);
+			if($layanan=="pengumuman")
+			{
+				$data['pengumuman'] = $pengumuman;
+			}
+			else
+			{
+				$data['pengumuman'] = null;
+			}
 			$this->db->insert('panggil', $data);
 			$respon['success'] = ($this->db->affected_rows() != 1) ? 0 : 1; //kalo berhasil return 1 kalo gagal return 0
 		}
@@ -147,6 +160,7 @@ class M_antrian extends CI_Model
 	public function cek_panggilan($id)
 	{
 		$this->db->where('id', $id);
+		// $this->db->where('id', "1Pengambilan produk");
 		$q = $this->db->get('panggil');
 		if(empty($q->result()))
 		{
@@ -176,6 +190,7 @@ class M_antrian extends CI_Model
 				$respon['id'] = $row->id;
 				$respon['no'] = $row->no;
 				$respon['layanan'] = $row->layanan;
+				$respon['pengumuman'] = $row->pengumuman;
 			}
 		}
 		echo json_encode($respon);
