@@ -5,9 +5,9 @@ var layanan = $("input[name='layanan']").val();
 var tabel;
 const getUrl = window.location;
 var b = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-if(b.includes("c_user/"))
+if(b.includes("c_user"))
 {
-	b.replace("c_user/","");
+	b = b.replace("c_user","");
 }
 if(b.substring(b.length - 1)== "/")
 {
