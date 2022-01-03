@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/loader.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/cursor.css') ?>">
 </head>
+<!-- <body id="wrap" onload="cek_tutup()"> -->
 <body id="wrap">
     <div class="logo-pa"></div>
     <div class="container">
@@ -50,7 +51,7 @@
             <div class="content">
                 <ul>
                     <li>Informasi E-Court</li>
-                    <li>Pendaftaran E-Court</li>
+                    <!-- <li>Pendaftaran E-Court</li> -->
                 </ul>
                 <div class="button">
                     <a href="#" onclick="ambil_antrian('ecourt');">Ambil Antrian</a>
@@ -130,7 +131,7 @@
             var sekarang = new Date();
             var jam_tutup = new Date();
             jam_tutup.setHours(15,0,0);
-            console.log("cek tutup");
+            // console.log("cek tutup");
             if(jam_tutup.getHours() == sekarang.getHours())
             {
                 if(jam_tutup.getMinutes() < sekarang.getMinutes())
@@ -141,7 +142,7 @@
                     }
                     else
                     {
-                        console.log("gak jadi tutup");
+                        // console.log("gak jadi tutup");
                     }
                 }
             }
@@ -153,14 +154,14 @@
                 }
                 else
                 {
-                    console.log("gak jadi tutup");
+                    // console.log("gak jadi tutup");
                 }
             }
             else {
-                console.log("belum waktunya tutup");
+                // console.log("belum waktunya tutup");
             }
+            setInterval(cek_tutup, 60000);
         }
-        setInterval(cek_tutup, 60000);
     </script>
 </body>
 </html>

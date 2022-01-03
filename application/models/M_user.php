@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_user extends CI_Model
 {
 	
-	private $_table = "user";
+	private $_table = "user_antrian";
 	public $id;
 	public $nama;
 	public $username;

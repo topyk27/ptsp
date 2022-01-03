@@ -3,12 +3,14 @@ var namanya = path.split("/"); // jadinya ["", "ptsp", "c_user", "F"]
 var host = window.location.hostname; //localhost
 var layanan = $("input[name='layanan']").val();
 var tabel;
+const getUrl = window.location;
+const baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 $("input[name='tunda']").click(function(){
 	id = $("input[name='id']").val();
 	ke = "tetap";
 	$.ajax({
 		type : 'POST',
-		url : 'http://'+host+'/'+namanya[1]+'/c_antrian/ubah',
+		url : baseUrl + '/' + 'c_antrian/ubah',
 		data : {id: id, ke: ke},
 		dataType: 'json',
 		beforeSend: function(){
@@ -36,7 +38,7 @@ $("input[name='selesai']").click(function(){
 	id = $("input[name='id']").val();
 	$.ajax({
 		type: 'POST',
-		url: 'http://'+host+'/'+namanya[1]+'/c_antrian/ubah',
+		url: baseUrl + '/' +'c_antrian/ubah',
 		data: { id: id, ke: "ZZ"},
 		dataType: 'json',
 		beforeSend: function(){
@@ -69,7 +71,7 @@ $("form#form-antrian").submit(function(e){
 	
 	$.ajax({
 		type: 'POST',
-		url: 'http://'+host+'/'+namanya[1]+'/c_antrian/ubah',
+		url: baseUrl + '/' +'c_antrian/ubah',
 		data: { id: id, ke: ke},
 		dataType: 'json',
 		beforeSend: function(){
@@ -102,7 +104,7 @@ function cek_panggilan(id)
 	terpanggil = false;
 	$.ajax({
 		type: "POST",
-		url: 'http://'+host+'/'+namanya[1]+'/c_antrian/cek_panggilan',
+		url: baseUrl + '/' +'c_antrian/cek_panggilan',
 		data: {id : id},
 		dataType: 'json',
 		success: function(respon){
@@ -141,7 +143,7 @@ function panggil(no,layanan)
 {
 	$.ajax({
 		type: "POST",
-		url: 'http://'+host+'/'+namanya[1]+'/c_antrian/panggil',
+		url: baseUrl + '/' +'c_antrian/panggil',
 		data: {no : no, layanan : layanan},
 		dataType: 'json',
 		beforeSend: function(){
@@ -150,12 +152,12 @@ function panggil(no,layanan)
 		success: function(respon){
 			if (respon.success==1)
 			{
-				console.log("panggil masuk db");
+				// console.log("panggil masuk db");
 				cek_panggilan(respon.id);
 			}
 			else
 			{
-				console.log("gagal masuk db");
+				// console.log("gagal masuk db");
 				$(".loader2").hide();
 				alert("gagal memanggil, silahkan coba lagi");
 			}
@@ -180,7 +182,7 @@ $("#ubahForm").submit(function(event){
 	console.log("mau ubah");
 	$.ajax({
 		type: "POST",
-		url: 'http://'+host+'/'+namanya[1]+'/c_user/ubah',
+		url: baseUrl + '/' +'c_user/ubah',
 		data: $("#ubahForm").serialize(),
 		dataType: 'json',
 		beforeSend: function(){
@@ -217,7 +219,7 @@ $(document).ready(function(){
 		"info" : false,
 		"ordering" : false,
 		"ajax" : {
-			"url" : 'http://'+host+'/'+namanya[1]+'/c_antrian/getByLayanan/'+layanan,
+			"url" : baseUrl + '/' +'c_antrian/getByLayanan/'+layanan,
 			"dataSrc" : "",
 		},
 		"columns" : [

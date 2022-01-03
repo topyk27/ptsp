@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		<span class="s1-txt3 txt-center">
-			Copyright &copy; <a href="http://taufikdwp.tk" target="_blank" style="color:#43d8c9;">Taufik Dwi Wahyu Putra</a> 2020
+			Copyright &copy; <a href="http://taufikdwp.tk" target="_blank" style="color:#43d8c9;">Taufik Dwi Wahyu Putra</a> <?php echo date("Y"); ?>
 		</span>
 	</div>
 	<script src="<?php echo base_url('asset/js/jquery-3.3.1.min.js') ?>"></script>

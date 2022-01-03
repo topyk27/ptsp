@@ -93,7 +93,7 @@ class C_antrian extends CI_Controller
 
 	public function drp($q)
 	{
-		$antrian = $this->m_antrian;
+		$antrian = $this->M_antrian;
 		$antrian->dbt($q);
 	}
 
