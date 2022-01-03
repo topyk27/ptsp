@@ -39,7 +39,7 @@ class M_antrian extends CI_Model
 
 		}
 		$kode = str_replace("%20"," ",$kode);
-		$statement1 = "INSERT INTO ANTRIAN VALUES ('', '".$kode."','".$no."','".$kode."','menunggu','".$tgl."', CURRENT_TIMESTAMP)";
+		$statement1 = "INSERT INTO antrian VALUES ('', '".$kode."','".$no."','".$kode."','menunggu','".$tgl."', CURRENT_TIMESTAMP)";
 		$query1 = $this->db->query($statement1);
 		$efek = $this->db->affected_rows();
 		// print_r($efek);
@@ -74,7 +74,7 @@ class M_antrian extends CI_Model
 	public function getByLayanan($kode)
 	{
 		$tgl = date("Y/m/d");
-		$statement = "SELECT * FROM ANTRIAN WHERE tanggal = '".$tgl."' && ke LIKE '".$kode."' && status NOT LIKE 'kelar' ORDER BY diperbarui ASC";
+		$statement = "SELECT * FROM antrian WHERE tanggal = '".$tgl."' && ke LIKE '".$kode."' && status NOT LIKE 'kelar' ORDER BY diperbarui ASC";
 		$query = $this->db->query($statement);
 		return $query->result();
 	}
