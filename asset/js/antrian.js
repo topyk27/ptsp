@@ -8,7 +8,13 @@ var timer_panggil;
 var cprtext = "C";
 const print = false;
 const getUrl = window.location;
-const baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+var b = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+if(b.substring(b.length - 1 == "/"))
+{
+	b.slice(0,-1);
+}
+const baseUrl = b ;
+
 function aa() {
 	responsiveVoice.speak("ANTRIAN PTSP", "Indonesian Male", { volume: 1 });
 }
