@@ -120,12 +120,12 @@ function cek_panggilan(id)
 		success: function(respon){
 			if (respon.efek==1)
 			{
-				console.log("ini efek cek panggilan berarti belum terpanggil " + respon.efek);
+				// console.log("ini efek cek panggilan berarti belum terpanggil " + respon.efek);
 									
 			}
 			else
 			{
-				console.log("ini efek cek panggilan berarti sudah terpanggil" + respon.efek);
+				// console.log("ini efek cek panggilan berarti sudah terpanggil" + respon.efek);
 				terpanggil = true;
 			}
 		},
@@ -189,7 +189,7 @@ function panggil(no,layanan)
 
 $("#ubahForm").submit(function(event){
 	event.preventDefault();
-	console.log("mau ubah");
+	// console.log("mau ubah");
 	$.ajax({
 		type: "POST",
 		url: baseUrl + '/' +'c_user/ubah',
@@ -201,11 +201,11 @@ $("#ubahForm").submit(function(event){
 		success: function(respon){
 			if(respon.success==1)
 			{
-				console.log("oke");
+				// console.log("oke");
 			}
 			else
 			{
-				console.log("nay");
+				// console.log("nay");
 			}
 		},
 		complete: function(){
@@ -254,8 +254,8 @@ $(document).ready(function(){
 		var currentRow = $(this).closest("tr");
 		var data = $("#tabel_antrian").DataTable().row(currentRow).data();
 		
-		console.log("id "+data['id']);
-		console.log("ke "+data['ke']);
+		// console.log("id "+data['id']);
+		// console.log("ke "+data['ke']);
 		if (!tabel.data().any()) //kalo data tabelnya kosong
 		{
 	
@@ -274,7 +274,7 @@ $(document).ready(function(){
 				else
 				{
 					//fungsi panggil
-					console.log("mau panggil");
+					// console.log("mau panggil");
 					panggil(data['no'], data['ke']);
 				}
 				
