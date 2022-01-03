@@ -10,8 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/loader.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('asset/css/cursor.css') ?>">
 </head>
-<!-- <body id="wrap" onload="cek_tutup()"> -->
-<body id="wrap">
+<body id="wrap" onload="cek_tutup()">
     <div class="logo-pa"></div>
     <div class="container">
         <!-- <h1 class="setelan">SILAHKAN AMBIL NOMOR ANTRIAN</h1> -->

@@ -5,11 +5,16 @@ var layanan = $("input[name='layanan']").val();
 var tabel;
 const getUrl = window.location;
 var b = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+if(b.includes("c_user/"))
+{
+	b.replace("c_user/","");
+}
 if(b.substring(b.length - 1)== "/")
 {
 	b=b.slice(0,-1);
 }
 const baseUrl = b ;
+console.log(baseUrl);
 $("input[name='tunda']").click(function(){
 	id = $("input[name='id']").val();
 	ke = "tetap";
