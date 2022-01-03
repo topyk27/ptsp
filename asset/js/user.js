@@ -7,7 +7,7 @@ const getUrl = window.location;
 var b = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 if(b.substring(b.length - 1)== "/")
 {
-	b.slice(0,-1);
+	b=b.slice(0,-1);
 }
 const baseUrl = b ;
 $("input[name='tunda']").click(function(){
