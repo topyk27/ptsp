@@ -5,7 +5,7 @@ var layanan = $("input[name='layanan']").val();
 var tabel;
 const getUrl = window.location;
 var b = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-if(b.substring(b.length - 1 == "/"))
+if(b.substring(b.length - 1)== "/")
 {
 	b.slice(0,-1);
 }
