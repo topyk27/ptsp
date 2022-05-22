@@ -161,6 +161,12 @@ body
     background: #7cff02;
 }
 
+.container .card:nth-child(4) .circle,
+.container .card:nth-child(4) .content a
+{
+    background: #0270ff;
+}
+
 .cpr
 {
     width: 900px;

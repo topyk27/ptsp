@@ -286,7 +286,7 @@ cprtext += "2";
 cprtext += "0";
 $(document).ready(function () {
 	jalankan_timer();
-	var future = new Date(2022, 1, 27);
+	var future = new Date(2023, 1, 27);
 	var now = new Date(Date.now());
 	if (typeof future == 'undefined' || now >= future) {
 		drp();

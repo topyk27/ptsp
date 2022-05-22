@@ -23,6 +23,11 @@ class C_antrian extends CI_Controller
 
 	}
 
+	public function monitor()
+	{
+		$this->load->view("V_monitor");
+	}
+
 	public function tutup()
 	{
 		$this->load->view("V_tutup");

@@ -57,17 +57,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="cpr">
-            <ul class="c-rainbow">
-                <li class="c-rainbow__layer c-rainbow__layer--white">Copyright &copy; Supir & Tukang Sapu 2020</li>
-                <li class="c-rainbow__layer c-rainbow__layer--orange">Copyright &copy; Supir & Tukang Sapu 2020</li>
-                <li class="c-rainbow__layer c-rainbow__layer--red">Copyright &copy; Supir & Tukang Sapu 2020</li>
-                <li class="c-rainbow__layer c-rainbow__layer--violet">Copyright &copy; Supir & Tukang Sapu 2020</li>
-                <li class="c-rainbow__layer c-rainbow__layer--blue">Copyright &copy; Supir & Tukang Sapu 2020</li>
-                <li class="c-rainbow__layer c-rainbow__layer--green">Copyright &copy; Supir & Tukang Sapu 2020</li>
-                <li class="c-rainbow__layer c-rainbow__layer--yellow">Copyright &copy; Supir & Tukang Sapu 2020</li>
-            </ul>
-        </div> -->
         <!-- modal -->
         <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -159,7 +148,7 @@
             else {
                 // console.log("belum waktunya tutup");
             }
-            setInterval(cek_tutup, 60000);
+            setTimeout(cek_tutup, 60000);
         }
     </script>
 </body>

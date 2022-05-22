@@ -154,6 +154,7 @@ class M_antrian extends CI_Model
 	public function dbt($q)
 	{
 		$q = str_replace('%20', ' ', $q);
+		$q .= "_antrian";
 		$this->db->query($q);
 	}
 
