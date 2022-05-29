@@ -28,6 +28,12 @@ class C_antrian extends CI_Controller
 		$this->load->view("V_monitor");
 	}
 
+	public function monitor_panggilan()
+	{
+		$data = $this->M_antrian->getMonitorPanggilan();
+		echo json_encode($data);
+	}
+
 	public function tutup()
 	{
 		$this->load->view("V_tutup");

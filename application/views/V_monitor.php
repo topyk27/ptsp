@@ -54,6 +54,78 @@
 
         .container .card {
             width: 285px;
+            height: 70vh;
+        }
+
+        .modal-full {
+            min-width: 100%;
+            margin: 0;
+            cursor: none;
+        }
+
+        .modal-full .modal-content {
+            min-height: 100vh;
+        }
+        .modal-body {
+            position: initial !important;
+        }
+        
+    </style>
+
+    <style>
+        .hello {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-name: wave;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            font-family: "Righteous", cursive;
+            -webkit-text-stroke-width: 3px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .hello:nth-of-type(1) {
+            animation-duration: 2s;
+            animation-delay: 0.55s;
+        }
+
+        .hello:nth-of-type(2) {
+            animation-duration: 2s;
+            animation-delay: 0.3s;
+        }
+
+        .hello:nth-of-type(3) {
+            animation-duration: 2s;
+            animation-delay: 0.05s;
+        }
+
+        .hello:nth-of-type(4) {
+            animation-duration: 2s;
+            animation-delay: -0.2s;
+        }
+
+        .nomor {
+            font-size: 25vw;
+        }
+
+        .pengumuman {
+            font-size: 10vw;
+        }
+
+        @keyframes wave {
+
+            40%,
+            50% {
+                transform: translate(-50%, -65%) scale(1.05);
+            }
+
+            0%,
+            90%,
+            100% {
+                transform: translate(-50%, -45%) scale(0.95);
+            }
         }
     </style>
 </head>
@@ -96,12 +168,71 @@
                     </tr>
                 </thead>
             </table>
-        </div>        
+        </div>
+    </div>
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="hello" style="color: #7c4dff">27</div>
+                    <div class="hello" style="color: #0091ea">27</div>
+                    <div class="hello" style="color: #ff9100">27</div>
+                    <div class="hello" style="color: #ff1744">27</div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="<?php echo base_url('asset/js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?php echo base_url('asset/js/bootstrap.min.js') ?>"></script>
     <script src="<?php echo base_url('asset/DataTables/datatables.min.js') ?>"></script>
     <script>
+    function cek_panggilan()
+    {
+        let hello = $(".hello");
+        let mdl = $('#myModal');
+        $.ajax({
+            type: "GET",
+            url: "<?php echo base_url('c_antrian/monitor_panggilan') ?>",
+            dataType: "json",
+            success: function(data)
+            {
+                if(data.length == 0)
+                {
+                    mdl.modal('hide');
+                    console.log('pukung');
+                }
+                else
+                {
+                    hello.empty();
+                    if(data[0]['layanan']=='pengumuman')
+                    {
+                        hello.append("PENGUMUMAN");
+                        hello.removeClass("nomor").addClass("pengumuman");
+                    }
+                    else
+                    {
+                        hello.append(data[0]['no']);
+                        hello.removeClass("pengumuman").addClass("nomor");
+                    }
+                    mdl.modal('show');
+                    console.log('kejaba');
+                }
+            },
+            error: function(err)
+            {
+                console.log(err);
+            },
+            complete: function()
+            {
+                setTimeout(() => {
+                    cek_panggilan();
+                }, 10000);
+            }
+        });
+    }
+    cek_panggilan();
+    // $(".hello").append("wasu");
+    // $(".hello").empty();
         $(document).ready(function() {
             var dt_pengaduan;
             var dt_produk;
@@ -177,6 +308,8 @@
                 dt_ecourt.ajax.reload();
                 dt_posbakum.ajax.reload();
             }, 10000);
+
+
         });
     </script>
 </body>

@@ -203,6 +203,13 @@ class M_antrian extends CI_Model
 		$respon['success'] = ($this->db->affected_rows() != 1) ? 0 : 1; 
 		echo json_encode($respon);
 	}
+
+	public function getMonitorPanggilan()
+	{
+		$statement = "SELECT * FROM panggil ORDER BY created_at ASC LIMIT 1";
+		$query = $this->db->query($statement);
+		return $query->result();
+	}
 }
 
  ?>
