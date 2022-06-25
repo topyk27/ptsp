@@ -1,4 +1,24 @@
 // $(document).ready(function(){
+var msg = new SpeechSynthesisUtterance();
+var suara;
+var myTimeout;
+function myTimer()
+{
+	speechSynthesis.pause();
+	speechSynthesis.resume();
+	myTimeout = setTimeout(myTimer, 10000);
+}
+// const g_lang = 'in-ID';
+if(rsvc==false)
+{
+	setTimeout(() => {		
+		suara = window.speechSynthesis.getVoices();		
+		msg.voice = suara[11];	
+		msg.lang = 'in-ID';
+		msg.rate = 0.9;		
+	}, 1000);
+
+}
 var url = window.location.pathname; // jadinya /ptsp/
 var svr = window.location.hostname + url; //jadinya localhost/ptsp/
 var voice = "Indonesian Male";
@@ -6,7 +26,7 @@ var voice = "Indonesian Male";
 // rate = {rate: 0.9, onend: jalankan_timer};
 var timer_panggil;
 var cprtext = "C";
-const print = false;
+var print = true;
 const getUrl = window.location;
 var b = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 if(b.substring(b.length - 1)== "/")
@@ -36,7 +56,7 @@ function ambil_antrian(kode) {
 				// console.log("berhasil ambil antrian kemdudian jalankan fungsi cetak");
 				// console.log("ini data no " + respon.no);
 				$(".loading").hide();
-				if (print) {
+				if (print==true) {
 					cetak(respon.no);
 				}
 				else {
@@ -84,7 +104,7 @@ function cetak(no) {
 		},
 		success: function (respon) {
 			if (respon.success == 1) {
-				console.log("berhasil kirim data ke printer");
+				// console.log("berhasil kirim data ke printer");
 			}
 			else {
 				alert("gagal kirim data ke printer");
@@ -228,13 +248,29 @@ function memanggil_antrian(id, no, layanan, pengumuman) {
 	else {
 		text = "Dipanggil nomor antrian " + no + ". silahkan ke layanan " + layanan;
 	}
-	responsiveVoice.speak(text, voice, {
-		rate: 0.9, onend: function () {
-			setTimeout(function () {
-				responsiveVoice.speak(text, voice, { rate: 0.9, onend: hapus_panggil_antrian(id) });
-			}, 3000);
+	if(rsvc != false)
+	{
+		responsiveVoice.speak(text, voice, {
+			rate: 0.9, onend: function () {
+				setTimeout(function () {
+					responsiveVoice.speak(text, voice, { rate: 0.9, onend: hapus_panggil_antrian(id) });
+				}, 3000);
+			}
+		});
+	}
+	else
+	{
+		myTimeout = setTimeout(myTimer, 10000);
+		msg.text = text;
+		// console.log('ini msg text : ' + msg.text);
+		msg.onend = function(e)
+		{
+			clearTimeout(myTimeout);
+			hapus_panggil_antrian(id);
 		}
-	});
+		speechSynthesis.speak(msg);
+		// console.log('apakah?');
+	}
 	// {rate: 0.9, onend: jalankan_timer};
 }
 cprtext += "T";

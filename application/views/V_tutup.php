@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,24 +47,46 @@
 	</div>
 	<script src="<?php echo base_url('asset/js/jquery-3.3.1.min.js') ?>"></script>
 	<script src="<?php echo base_url('asset/js/bootstrap.min.js') ?>"></script>
-	<script src="https://code.responsivevoice.org/responsivevoice.js?key=6UoEN13s"></script>
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=0xxfQe7z"></script>
+	<script>const rsvc = true;</script>
 	<script type="text/javascript">
+		var msg = new SpeechSynthesisUtterance();
+		var suara;
+		var myTimeout;
+		function myTimer()
+		{
+			speechSynthesis.pause();
+			speechSynthesis.resume();
+			myTimeout = setTimeout(myTimer, 10000);
+		}
+		// const g_lang = 'in-ID';
+		if(rsvc==false)
+		{
+			setTimeout(() => {		
+				suara = window.speechSynthesis.getVoices();		
+				msg.voice = suara[11];
+				// console.log(msg.voice);
+				msg.lang = 'in-ID';
+				msg.rate = 0.9;		
+			}, 1000);
+
+		}
 		var voice = "Indonesian Male";
 		var timer_panggil;
 		function panggil() {
 			$.ajax({
 				type: "GET",
-				url: '<?php echo base_url('c_antrian/panggil_antrian') ?>',
+				url: "<?php echo base_url('c_antrian/panggil_antrian') ?>",
 				dataType: 'json',
 				success: function(respon){
 					if (respon.success==1)
 					{
-						console.log("antrian ada");
+						// console.log("antrian ada");
 						memanggil_antrian(respon.id, respon.no, respon.layanan, respon.pengumuman);
 					}
 					else
 					{
-						console.log("antrian tidak ada");
+						// console.log("antrian tidak ada");
 					}
 				}
 			});
@@ -81,30 +103,51 @@
 			{
 				text = "Dipanggil nomor antrian " + no + ". silahkan ke layanan " + layanan;
 			}
-			responsiveVoice.speak(text, voice, {rate: 0.9, onend: function(){
-				setTimeout(function(){
-					responsiveVoice.speak(text, voice, {rate: 0.9, onend: hapus_panggil_antrian(id)});
-				}, 3000);
-			}});
+			if(rsvc != false)
+			{
+				responsiveVoice.speak(text, voice, {rate: 0.9, onend: function(){
+					setTimeout(function(){
+						responsiveVoice.speak(text, voice, {rate: 0.9, onend: hapus_panggil_antrian(id)});
+					}, 3000);
+				}});
+			}
+			else
+			{
+				// console.log('kan asu');
+				myTimeout = setTimeout(myTimer, 10000);
+				msg.text = text;
+				msg.onend = function(e)
+				{
+					// console.log('aww');
+					clearTimeout(myTimeout);
+					hapus_panggil_antrian(id);
+				}
+				msg.onerror = function(e)
+				{
+					// console.log('error');
+					console.log(e);
+				}
+				speechSynthesis.speak(msg);
+			}
 		}
 
 		function hapus_panggil_antrian(id)
 		{
 			$.ajax({
 				type: "POST",
-				url: '<?php echo base_url('c_antrian/hapus_panggil_antrian') ?>',
+				url: "<?php echo base_url('c_antrian/hapus_panggil_antrian') ?>",
 				data: {id: id},
 				dataType: "JSON",
 				success: function(respon)
 				{
 					if(respon.success==1)
 					{
-						console.log("data antrian panggil berhasil dihapus");
+						// console.log("data antrian panggil berhasil dihapus");
 						
 					}
 					else
 					{
-						console.log("data antrian panggil gagal dihapus");
+						// console.log("data antrian panggil gagal dihapus");
 					}
 					setTimeout(jalankan_timer,7000);
 				}

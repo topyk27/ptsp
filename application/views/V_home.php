@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,8 +110,9 @@
     <!-- end cursor -->
     <script src="<?php echo base_url('asset/js/jquery-3.3.1.min.js') ?>"></script>
     <script src="<?php echo base_url('asset/js/bootstrap.min.js') ?>"></script>
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=6UoEN13s"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=0xxfQe7z"></script>
     <script src="<?php echo base_url('asset/DataTables/datatables.min.js') ?>"></script>
+    <script>const rsvc = true;</script>
     <script src="<?php echo base_url('asset/js/antrian.js') ?>"></script>
     <script src="<?php echo base_url('asset/js/cursor.js') ?>"></script>
     <script type="text/javascript">
